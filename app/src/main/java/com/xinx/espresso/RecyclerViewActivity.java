@@ -3,7 +3,6 @@ package com.xinx.espresso;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,13 +13,11 @@ import android.widget.TextView;
 
 public class RecyclerViewActivity extends AppCompatActivity {
 
-    private ViewGroup root;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
-        root = findViewById(R.id.layout_root);
         RecyclerView view = findViewById(R.id.recycler_view);
         view.setLayoutManager(new LinearLayoutManager(this));
         view.setAdapter(new MyAdapter());
@@ -42,7 +39,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
             vh.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Snackbar.make(root, array[vh.getAdapterPosition()], Snackbar.LENGTH_SHORT).show();
+                    ((TextView) findViewById(R.id.tv_recycler_item)).setText(array[vh.getAdapterPosition()]);
                 }
             });
         }
