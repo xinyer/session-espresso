@@ -2,14 +2,11 @@ package com.xinx.espresso;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.test.espresso.idling.CountingIdlingResource;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 public class IdleResourceActivity extends AppCompatActivity {
 
-
-    public CountingIdlingResource idlingResource = new CountingIdlingResource("LOAD_DATA");
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,7 +21,6 @@ public class IdleResourceActivity extends AppCompatActivity {
     }
 
     private void setTextDelay() {
-        idlingResource.increment();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -38,7 +34,6 @@ public class IdleResourceActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         ((TextView) findViewById(R.id.textView)).setText("Hello");
-                        idlingResource.decrement();
                     }
                 });
             }
